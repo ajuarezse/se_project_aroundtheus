@@ -1,23 +1,22 @@
-.header.page__section {
-  margin-top: 45px;
-  border-bottom: 1px solid #545454;
+.header {
+  border-bottom: 1px solid rgba(84, 84, 84, 1);
 }
 
 .header__logo {
   height: 33px;
   width: 173px;
+  margin-top: 45px;
   margin-bottom: 41px;
 }
 
 @media screen and (max-width: 1200px) {
-  .header.page__section {
-    margin-top: 45px;
+  .header {
     max-width: 880px;
   }
 }
 
 @media screen and (max-width: 320px) {
-  .header.page__section {
+  .header {
     margin: 0;
   }
 

@@ -1,4 +1,15 @@
-# Project 3: Around The U.S.
+# Around The U.S., Project Description
+
+This is the third project of my Software Engineering Program at TripleTen. It was created using HTML and CSS, based on the Figma design.
+
+## Project Features, Technologies Used
+
+- Semantic HTML5
+- Flexbox
+- Grid Layouts
+- Flat BEM file structure
+- Repsonsisve design
+- CSS
 
 ### Overview
 
@@ -8,7 +19,7 @@
 
 **Intro**
 
-This project is made so all the elements are displayed correctly on popular screen sizes. We recommend investing more time in completing this project, since it's more difficult than previous ones.
+This project is made so all the elements are displayed correctly on popular screen sizes.
 
 **Figma**
 
