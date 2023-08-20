@@ -96,6 +96,7 @@
     max-width: 196px;
     line-height: 26.63px;
     font-size: 22px;
+    width: 100%;
   }
 
   .profile__description {
@@ -119,5 +120,14 @@
   .profile__edit-button {
     width: 18px;
     height: 18px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .profile__title {
+    max-width: 196px;
+    line-height: 26.63px;
+    font-size: 22px;
+    width: 100%;
   }
 }
