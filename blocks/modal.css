@@ -10,11 +10,12 @@
   justify-content: center;
   background-color: rgba(0, 0, 0, 0.5);
   padding: 0 19px;
-  visibility: hidden;
+  display: none;
 }
 
 .modal_opened {
   display: flex;
+  visibility: visible;
 }
 
 .modal__container {
