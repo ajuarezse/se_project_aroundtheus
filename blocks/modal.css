@@ -86,6 +86,11 @@
   line-height: 16.94px;
 }
 
+.modal__input:last-of-type {
+  margin-bottom: 48px;
+  margin-top: 30px;
+}
+
 .modal__button {
   width: 100%;
   height: 50.15px;
@@ -122,11 +127,11 @@
     width: 282px;
   }
 }
-.modal__form-input {
+.modal__input {
   width: 100%;
   padding-bottom: 13px;
 }
-.modal__form-input:last-of-type {
+.modal__input:last-of-type {
   margin-bottom: 45px;
 }
 
@@ -144,10 +149,6 @@
   width: 26px;
   bottom: calc(100% + 10px);
   left: calc(100% - 33px);
-}
-
-.modal__heading {
-  margin-bottom: 75px;
 }
 
 @media screen and (max-width: 880px) and (min-width: 521px) {
