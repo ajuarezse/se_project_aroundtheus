@@ -140,13 +140,6 @@
     padding-left: 19px;
     padding-right: 19px;
   }
-
-  .modal__close {
-    width: 26px;
-    height: 26px;
-    top: -40px;
-    left: calc(100% - 30px);
-  }
   .modal__container {
     padding: 25px 22px;
     width: 282px;
