@@ -49,12 +49,22 @@ const cardTemplate =
   document.querySelector("#card-template").content.firstElementChild;
 const addNewCardFormElement = addNewModalCard.querySelector(".modal__form");
 
+const previewImageModal = document.querySelector("#modal-preview");
+const previewImage = document.querySelector(".modal__image");
+const previewImageTitle = document.querySelector(".modal__preview-title");
+const previewImageModalClose = document.querySelector("#preview-image-close");
+
+const cardTitleInput = addNewCardFormElement.querySelector(
+  ".modal__input_type_title"
+);
+
+const cardUrlInput = addNewCardFormElement.querySelector(
+  ".modal__input_type_url"
+);
+
 /*----------------------------------------------------*/
 /*               Functions                            */
 /*---------------------------------------------------*/
-/*function closePopup() {
-  profileEditModal.classList.remove("modal_opened");
-}*/
 
 function openPopup(popup) {
   popup.classList.add("modal_opened");
@@ -68,30 +78,30 @@ function getCardElement(cardData) {
   const cardElement = cardTemplate.cloneNode(true);
   const cardImageEL = cardElement.querySelector(".card__image");
   const cardTitleEL = cardElement.querySelector(".card__title");
-  const cardRemoveButton = cardElement.querySelector(".card__button-remove");
   const likeButton = cardElement.querySelector(".card__like-button");
+  const trashButton = cardElement.querySelector(".card__button-trash");
+
+  trashButton.addEventListener("click", () => {
+    cardElement.remove();
+  });
 
   likeButton.addEventListener("click", () => {
     likeButton.classList.toggle("card__like-button_active");
   });
 
-  /* cardRemoveButton.addEventListener("click", () => {
-    cardElement.remove();
-  });*/
-
   cardImageEL.setAttribute("src", cardData.link);
   cardImageEL.setAttribute("alt", cardData.name);
   cardTitleEL.textContent = cardData.name;
+
+  cardImageEL.addEventListener("click", () => {
+    previewImage.src = cardData.link;
+    previewImage.alt = cardData.name;
+    previewImageTitle.textContent = cardData.name;
+    openPopup(previewImageModal);
+  });
+
   return cardElement;
 }
-
-const cardTitleInput = addNewCardFormElement.querySelector(
-  ".modal__input_type_title"
-);
-
-const cardUrlInput = addNewCardFormElement.querySelector(
-  ".modal__input_type_url"
-);
 
 /*-------------------------------------------------*/
 /*              Event Handlers                     */
@@ -132,15 +142,16 @@ profileEditCloseButton.addEventListener("click", () => {
   closePopup(profileEditModal);
 });
 
+previewImageModalClose.addEventListener("click", () => {
+  closePopup(previewImageModal);
+});
+
 addNewModalCard.addEventListener("submit", handleAddCardFormSubmit);
 addNewCardButton.addEventListener("click", () => {
   addNewModalCard.classList.add("modal_opened");
 });
 
 addCardCloseButton.addEventListener("click", () => closePopup(addNewModalCard));
-
-/*modalCloseButton.addEventListener("click", closePopup);*/
-/*placeCloseButton.addEventListener("click", closePopup);*/
 
 profileEditForm.addEventListener("submit", handleProfileSubmit);
 

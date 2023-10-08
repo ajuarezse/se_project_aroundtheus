@@ -1,6 +1,6 @@
 # Around The U.S., Project Description
 
-This is the third project of my Software Engineering Program at TripleTen. It was created using HTML and CSS, based on the Figma design.
+This is the third project of my Software Engineering Program at TripleTen. It was created using HTML, CSS and JavaScript based on the Figma design.
 
 ## Project Features, Technologies Used
 
@@ -10,6 +10,7 @@ This is the third project of my Software Engineering Program at TripleTen. It wa
 - Flat BEM file structure
 - Repsonsisve design
 - CSS
+- JavaScript
 
 ### Overview
 
