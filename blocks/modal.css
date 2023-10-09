@@ -140,9 +140,17 @@
     padding-left: 19px;
     padding-right: 19px;
   }
+
+  .modal__container-picture {
+    flex-wrap: wrap;
+    justify-content: center;
+    display: flex;
+  }
+
   .modal__container {
     padding: 25px 22px;
     width: 282px;
+    border: 1px;
   }
   .modal__input {
     width: 100%;
@@ -161,15 +169,19 @@
     width: 100%;
   }
   .modal__close {
-    height: 26px;
-    width: 26px;
-    bottom: calc(100% + 10px);
-    left: calc(100% - 33px);
+    height: 30px;
+    width: x;
+    bottom: calc(100% + 3px);
+    left: calc(100% - 23px);
   }
 
   .modal__image {
     width: 240px;
     height: 299px;
+  }
+
+  .modal__heading {
+    width: 238px;
   }
 }
 

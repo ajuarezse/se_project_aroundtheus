@@ -135,7 +135,7 @@ function renderCard(cardData, wrapper) {
 profileEditButton.addEventListener("click", () => {
   profileTitleInput.value = profileTitle.textContent;
   profileDescriptionInput.value = profileDescription.textContent;
-  profileEditModal.classList.add("modal_opened");
+  openPopup(profileEditModal);
 });
 
 profileEditCloseButton.addEventListener("click", () => {
@@ -148,7 +148,7 @@ previewImageModalClose.addEventListener("click", () => {
 
 addNewModalCard.addEventListener("submit", handleAddCardFormSubmit);
 addNewCardButton.addEventListener("click", () => {
-  addNewModalCard.classList.add("modal_opened");
+  openPopup(addNewModalCard);
 });
 
 addCardCloseButton.addEventListener("click", () => closePopup(addNewModalCard));
