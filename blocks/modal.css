@@ -205,8 +205,8 @@
     width: 100%;
   }
   .modal__close {
-    height: 30px;
-    width: x;
+    height: 26px;
+    width: 26px;
     bottom: calc(100% + 3px);
     left: calc(100% - 23px);
   }
