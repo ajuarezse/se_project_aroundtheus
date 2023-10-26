@@ -66,12 +66,21 @@ const cardUrlInput = addNewCardFormElement.querySelector(
 /*               Functions                            */
 /*---------------------------------------------------*/
 
+function handleEsc(evt) {
+  const modal = document.querySelector(".modal_opened");
+  if (evt.key === "Escape") {
+    closePopup(modal);
+  }
+}
+
 function openPopup(popup) {
   popup.classList.add("modal_opened");
+  document.addEventListener("keydown", handleEsc);
 }
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
+  document.addEventListener("keydown", handleEsc);
 }
 
 function getCardElement(cardData) {
@@ -158,4 +167,14 @@ profileEditForm.addEventListener("submit", handleProfileSubmit);
 initialCards.forEach((cardData) => {
   const cardElement = getCardElement(cardData);
   cardListEl.prepend(cardElement);
+});
+
+const modals = document.querySelectorAll(".modal");
+
+modals.forEach((modal) => {
+  modal.addEventListener("click", (evt) => {
+    if (evt.target.classList.contains("modal")) {
+      closePopup(modal);
+    }
+  });
 });
