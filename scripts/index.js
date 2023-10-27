@@ -67,8 +67,8 @@ const cardUrlInput = addNewCardFormElement.querySelector(
 /*---------------------------------------------------*/
 
 function handleEsc(evt) {
-  const modal = document.querySelector(".modal_opened");
   if (evt.key === "Escape") {
+    const modal = document.querySelector(".modal_opened");
     closePopup(modal);
   }
 }
@@ -80,7 +80,7 @@ function openPopup(popup) {
 
 function closePopup(modal) {
   modal.classList.remove("modal_opened");
-  document.addEventListener("keydown", handleEsc);
+  document.removeEventListener("keydown", handleEsc);
 }
 
 function getCardElement(cardData) {
