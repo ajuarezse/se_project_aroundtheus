@@ -8,6 +8,8 @@ import * as constants from "../utils/constants.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import "../pages/index.css";
+//import { title } from "process";
+//import UserInfo from "../components/UserInfo.js";
 
 /*Functions*/
 
@@ -30,16 +32,30 @@ function closePopup(modal) {
 
 /*Event Handlers*/
 
-function handleProfileSubmit(e) {
-  e.preventDefault();
+/*function handleProfileSubmit(inputValues) {
+  inputValues.preventDefault();
   constants.profileTitle.textContent = constants.profileTitleInput.value;
   constants.profileDescription.textContent =
     constants.profileDescriptionInput.value;
   closePopup(constants.profileEditModal);
+}*/
+
+const userInfo = new UserInfo({
+  titleSelector: ".profile__title",
+  descriptionSelector: ".profile__description",
+});
+
+function handleProfileSubmit(userData) {
+  console.log(userData);
+  userInfo.setUserInfo({
+    title: userData.profileTitle,
+    description: userData.profileDescription,
+  });
+  closePopup(constants.profileEditModal);
 }
 
-function handleAddCardFormSubmit(e) {
-  e.preventDefault();
+function handleAddCardFormSubmit(inputValues) {
+  inputValues.preventDefault();
   const name = constants.cardTitleInput.value;
   const link = constants.cardUrlInput.value;
   renderCard({ name, link }, constants.cardListEl);
@@ -56,11 +72,31 @@ function handleImageClick(cardData) {
 
 /*Event Listeners*/
 
-constants.profileEditButton.addEventListener("click", () => {
+/*constants.profileEditButton.addEventListener("click", () => {
   constants.profileTitleInput.value = constants.profileTitle.textContent;
   constants.profileDescriptionInput.value =
     constants.profileDescription.textContent;
   openPopup(constants.profileEditModal);
+});*/
+
+//profile popup instantiation
+const profilePopup = new PopupWithForm(
+  "#profile-edit-modal",
+  handleProfileSubmit
+);
+profilePopup.setEventListeners();
+
+constants.profileEditButton.addEventListener("click", () => {
+  const currentUser = userInfo.getUserInfo();
+  constants.profileTitleInput.value = currentUser.profileTitle;
+  constants.profileDescriptionInput.value = currentUser.profileDescription;
+
+  profilePopup.open();
+  addCardFormValidator.resetValidation();
+});
+
+constants.addNewCardButton.addEventListener("click", () => {
+  cardModal.open();
 });
 
 constants.profileEditCloseButton.addEventListener("click", () => {
@@ -71,7 +107,7 @@ constants.previewImageModalClose.addEventListener("click", () => {
   closePopup(previewImageModal);
 });
 
-constants.addNewModalCard.addEventListener("submit", handleAddCardFormSubmit);
+//constants.addNewModalCard.addEventListener("submit", handleAddCardFormSubmit);
 constants.addNewCardButton.addEventListener("click", () => {
   openPopup(constants.addNewModalCard);
 });
@@ -80,17 +116,17 @@ constants.addCardCloseButton.addEventListener("click", () =>
   closePopup(constants.addNewModalCard)
 );
 
-constants.profileEditForm.addEventListener("submit", handleProfileSubmit);
+//constants.profileEditForm.addEventListener("submit", handleProfileSubmit);
 
-const modals = document.querySelectorAll(".modal");
+/*const modals = document.querySelectorAll(".modal");*/
 
-modals.forEach((modal) => {
+/*modals.forEach((modal) => {
   modal.addEventListener("click", (evt) => {
     if (evt.target.classList.contains("modal")) {
       closePopup(modal);
     }
   });
-});
+});*/
 
 /*create card*/
 
