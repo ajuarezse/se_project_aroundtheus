@@ -88,15 +88,15 @@ profilePopup.setEventListeners();
 
 constants.profileEditButton.addEventListener("click", () => {
   const currentUser = userInfo.getUserInfo();
-  constants.profileTitleInput.value = currentUser.profileTitle;
-  constants.profileDescriptionInput.value = currentUser.profileDescription;
+  constants.profileTitleInput.value = currentUser.title;
+  constants.profileDescriptionInput.value = currentUser.description;
 
   profilePopup.open();
   addCardFormValidator.resetValidation();
 });
 
 constants.addNewCardButton.addEventListener("click", () => {
-  cardModal.open();
+  profilePopup.open();
 });
 
 constants.profileEditCloseButton.addEventListener("click", () => {

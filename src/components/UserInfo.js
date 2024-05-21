@@ -1,21 +1,19 @@
 class UserInfo {
   constructor({ titleSelector, descriptionSelector }) {
     this._profileTitle = document.querySelector(titleSelector);
-    this._profileDesciption = document.querySelector(descriptionSelector);
+    this._profileDescription = document.querySelector(descriptionSelector);
   }
 
   getUserInfo() {
-    this._userInfo = {
+    return {
       title: this._profileTitle.textContent,
-      description: this._profileDesciption.textContent,
+      description: this._profileDescription.textContent,
     };
-
-    return this._userInfo;
   }
 
   setUserInfo({ title, description }) {
     this._profileTitle.textContent = title;
-    this._profileDesciption.textContent = description;
+    this._profileDescription.textContent = description;
   }
 }
 
