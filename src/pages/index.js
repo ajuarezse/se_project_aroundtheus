@@ -27,24 +27,18 @@ function handleProfileSubmit(userData) {
     title: userData.title,
     description: userData.description,
   });
-  constants.profileEditModal.close();
+  profilePopup.close();
 }
 
 function handleAddCardFormSubmit(cardData) {
   const { title, url } = cardData;
-  renderCard({ name: title, link: url }, constants.cardListEl);
-  constants.addNewModalCard.close();
+  renderCard({ name: title, link: url });
+  addCardPopup.close();
 }
 
-function handleImageClick(cardData) {
-  constants.previewImageModal.open();
-  constants.previewImage.src = cardData.link;
-  constants.previewImageTitle.textContent = cardData.name;
-  constants.previewImage.setAttribute("alt", cardData.name);
-}
+const previewImageModal = new PopupWithImage("#modal-preview");
+previewImageModal.setEventListeners();
 
-/* Event Listeners */
-// Profile popup instantiation
 const profilePopup = new PopupWithForm(
   "#profile-edit-modal",
   handleProfileSubmit
@@ -71,33 +65,29 @@ constants.addNewCardButton.addEventListener("click", () => {
   addCardPopup.open();
 });
 
-constants.profileEditCloseButton.addEventListener("click", () => {
-  constants.profileEditModal.close();
-});
-
-constants.previewImageModalClose.addEventListener("click", () => {
-  constants.previewImageModal.close();
-});
-
-constants.addCardCloseButton.addEventListener("click", () => {
-  constants.addNewModalCard.close();
-});
-
-/* Create card */
 function createCard(cardData) {
-  const cardElement = new Card(cardData, "#card-template", handleImageClick);
-  return cardElement.getView();
+  const newCard = new Card(cardData, "#card-template", (data) => {
+    previewImageModal.open(data);
+  });
+  return newCard.getView();
 }
 
-constants.initialCards.forEach((cardData) => {
-  const card = createCard(cardData);
-  constants.cardListEl.append(card);
-});
-
+// Renderer function for Section class
 function renderCard(cardData) {
-  const card = createCard(cardData);
-  constants.cardListEl.prepend(card);
+  const cardElement = createCard(cardData);
+  section.addItem(cardElement);
 }
+
+// Instantiate Section with initial cards and renderer function
+const section = new Section(
+  {
+    items: constants.initialCards,
+    renderer: renderCard,
+  },
+  ".cards__list"
+);
+
+section.renderItems();
 
 const editProfileFormValidator = new FormValidator(
   constants.config,
