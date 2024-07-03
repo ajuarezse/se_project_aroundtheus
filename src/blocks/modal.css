@@ -33,6 +33,11 @@
   display: grid;
 }
 
+.modal__container-delete {
+  width: 362px;
+  height: 109px;
+}
+
 .modal__heading {
   width: 330px;
   height: 23px;

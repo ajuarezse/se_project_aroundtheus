@@ -1,4 +1,3 @@
-/* Imports */
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -32,6 +31,8 @@ const api = new Api({
   },
 });
 
+let userId;
+
 api
   .getAppData()
   .then(([userData, initialCards]) => {
@@ -39,6 +40,7 @@ api
       title: userData.name,
       description: userData.about,
     });
+    userId = userData._id; // Assign userId to local variable
 
     section.setItems(initialCards);
     section.renderItems();
@@ -66,7 +68,13 @@ function handleAddCardFormSubmit(cardData) {
   api
     .addCard({ name: title, link: url })
     .then((newCardData) => {
-      renderCard({ name: newCardData.name, link: newCardData.link });
+      renderCard({
+        name: newCardData.name,
+        link: newCardData.link,
+        id: newCardData._id,
+        likes: newCardData.likes,
+        userId: userId,
+      });
       addCardPopup.close();
     })
     .catch(console.error);
@@ -81,7 +89,9 @@ const profilePopup = new PopupWithForm(
 );
 profilePopup.setEventListeners();
 
-const deleteCardPopup = new PopupDeleteCard("#delete-card-modal");
+const deleteCardPopup = new PopupDeleteCard({
+  popupSelector: "#delete-card-modal",
+});
 deleteCardPopup.setEventListeners();
 
 constants.profileEditButton.addEventListener("click", () => {
@@ -104,9 +114,15 @@ constants.addNewCardButton.addEventListener("click", () => {
 });
 
 function createCard(cardData) {
-  const newCard = new Card(cardData, "#card-template", (data) => {
-    previewImageModal.open(data);
-  });
+  const newCard = new Card(
+    cardData,
+    "#card-template",
+    (data) => {
+      previewImageModal.open(data);
+    },
+    handleDeleteCard,
+    handleLikeCard
+  );
   return newCard.getView();
 }
 
@@ -141,9 +157,29 @@ function handleDeleteCard(cardId, cardElement) {
     api
       .deleteCard(cardId)
       .then(() => {
-        cardElement.removeCardElement();
+        cardElement.remove();
         deleteCardPopup.close();
       })
       .catch(console.error);
   });
+}
+
+function handleLikeCard(cardId, cardElement) {
+  const isLiked = cardElement.isLiked();
+
+  if (isLiked) {
+    api
+      .unlikeCard(cardId)
+      .then((updatedCardData) => {
+        cardElement.updateLikes(updatedCardData.likes);
+      })
+      .catch(console.error);
+  } else {
+    api
+      .likeCard(cardId)
+      .then((updatedCardData) => {
+        cardElement.updateLikes(updatedCardData.likes);
+      })
+      .catch(console.error);
+  }
 }

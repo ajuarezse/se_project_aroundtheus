@@ -61,10 +61,20 @@ export default class Api {
   }
 
   //PUT https://around-api.en.tripleten-services.com/v1/cards/cardId/likes
-  // like a card
+  likeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "PUT",
+      headers: this._headers,
+    }).then(this._handleResponse);
+  }
 
   //DELETE https://around-api.en.tripleten-services.com/v1/cards/cardId/likes
-  // remove a like from a card
+  unlikeCard(cardId) {
+    return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
+      method: "DELETE",
+      headers: this._headers,
+    }).then(this._handleResponse);
+  }
 
   //PATCH https://around-api.en.tripleten-services.com/v1/users/me/avatar
   //setUserAvatar() {}
