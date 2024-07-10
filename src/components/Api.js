@@ -77,7 +77,15 @@ export default class Api {
   }
 
   //PATCH https://around-api.en.tripleten-services.com/v1/users/me/avatar
-  //setUserAvatar() {}
+  updateProfileAvatar(url) {
+    return fetch(`${this._baseUrl}/users/me/avatar`, {
+      method: "PATCH",
+      headers: this._headers,
+      body: JSON.stringify({
+        avatar: url,
+      }),
+    }).then(this._handleResponse);
+  }
 
   getAppData() {
     return Promise.all([this.getUserInfo(), this.getInitialCards()]);

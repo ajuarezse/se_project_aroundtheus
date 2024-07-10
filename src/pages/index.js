@@ -21,6 +21,7 @@ function handleEsc(evt) {
 const userInfo = new UserInfo({
   titleSelector: ".profile__title",
   descriptionSelector: ".profile__description",
+  avatarSelector: ".profile__image", // Add this line
 });
 
 const api = new Api({
@@ -31,7 +32,26 @@ const api = new Api({
   },
 });
 
+const editAvatarPopup = new PopupWithForm(
+  "#edit-avatar-modal",
+  handleAvatarFormSubmit
+);
+editAvatarPopup.setEventListeners();
+
+const profileAvatarForm = document.forms["avatar-form"];
+const profileAvatarButton = document.querySelector(".profile__avatar-button");
+const avatarFormValidator = new FormValidator(
+  constants.config,
+  profileAvatarForm
+);
+avatarFormValidator.enableValidation(); // Ensure validation is enabled
+
 let userId;
+
+profileAvatarButton.addEventListener("click", () => {
+  editAvatarPopup.open();
+  avatarFormValidator.resetValidation();
+});
 
 api
   .getAppData()
@@ -40,7 +60,8 @@ api
       title: userData.name,
       description: userData.about,
     });
-    userId = userData._id; // Assign userId to local variable
+    userInfo.setUserAvatar({ avatar: userData.avatar });
+    userId = userData._id;
 
     section.setItems(initialCards);
     section.renderItems();
@@ -78,6 +99,20 @@ function handleAddCardFormSubmit(cardData) {
       addCardPopup.close();
     })
     .catch(console.error);
+}
+
+function handleAvatarFormSubmit(data) {
+  editAvatarPopup.renderLoading(true);
+  api
+    .updateProfileAvatar(data.url)
+    .then((res) => {
+      userInfo.setUserAvatar(res);
+      editAvatarPopup.close();
+    })
+    .catch(console.error)
+    .finally(() => {
+      editAvatarPopup.renderLoading(false);
+    });
 }
 
 const previewImageModal = new PopupWithImage("#modal-preview");
@@ -165,9 +200,7 @@ function handleDeleteCard(cardId, cardElement) {
 }
 
 function handleLikeCard(cardId, cardElement) {
-  const isLiked = cardElement.isLiked();
-
-  if (isLiked) {
+  if (!cardElement._isLiked) {
     api
       .unlikeCard(cardId)
       .then((updatedCardData) => {
