@@ -21,7 +21,7 @@ function handleEsc(evt) {
 const userInfo = new UserInfo({
   titleSelector: ".profile__title",
   descriptionSelector: ".profile__description",
-  avatarSelector: ".profile__image", // Add this line
+  avatarSelector: ".profile__image",
 });
 
 const api = new Api({
@@ -44,7 +44,7 @@ const avatarFormValidator = new FormValidator(
   constants.config,
   profileAvatarForm
 );
-avatarFormValidator.enableValidation(); // Ensure validation is enabled
+avatarFormValidator.enableValidation();
 
 let userId;
 

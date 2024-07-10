@@ -39,7 +39,6 @@ export default class Api {
   }
 
   //POST https://around-api.en.tripleten-services.com/v1/cards
-  // add a new card to the server
   addCard({ name, link }) {
     return fetch(`${this._baseUrl}/cards`, {
       method: "POST",
@@ -52,7 +51,6 @@ export default class Api {
   }
 
   //DELETE https://around-api.en.tripleten-services.com/v1/cards/cardId
-  // Send a DELETE request to delete a card
   deleteCard(cardId) {
     return fetch(`${this._baseUrl}/cards/${cardId}`, {
       method: "DELETE",
