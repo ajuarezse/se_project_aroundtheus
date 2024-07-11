@@ -69,6 +69,7 @@ api
   .catch(console.error);
 
 function handleProfileSubmit(userData) {
+  profilePopup.renderLoading(true);
   api
     .updateProfileInfo({
       name: userData.title,
@@ -81,10 +82,14 @@ function handleProfileSubmit(userData) {
       });
       profilePopup.close();
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      profilePopup.renderLoading(false);
+    });
 }
 
 function handleAddCardFormSubmit(cardData) {
+  addCardPopup.renderLoading(true);
   const { title, url } = cardData;
   api
     .addCard({ name: title, link: url })
@@ -92,13 +97,16 @@ function handleAddCardFormSubmit(cardData) {
       renderCard({
         name: newCardData.name,
         link: newCardData.link,
-        id: newCardData._id,
+        _id: newCardData._id,
         likes: newCardData.likes,
         userId: userId,
       });
       addCardPopup.close();
     })
-    .catch(console.error);
+    .catch(console.error)
+    .finally(() => {
+      addCardPopup.renderLoading(false);
+    });
 }
 
 function handleAvatarFormSubmit(data) {
@@ -189,13 +197,17 @@ addCardFormValidator.enableValidation();
 function handleDeleteCard(cardId, cardElement) {
   deleteCardPopup.open();
   deleteCardPopup.handleDeleteConfirm(() => {
+    deleteCardPopup.renderLoading(true);
     api
       .deleteCard(cardId)
       .then(() => {
-        cardElement.remove();
+        cardElement.removeCard();
         deleteCardPopup.close();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => {
+        deleteCardPopup.renderLoading(false);
+      });
   });
 }
 
