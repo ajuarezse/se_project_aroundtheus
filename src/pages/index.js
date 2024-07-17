@@ -212,7 +212,7 @@ function handleDeleteCard(cardId, cardElement) {
 }
 
 function handleLikeCard(cardId, cardElement) {
-  if (!cardElement._isLiked) {
+  if (!cardElement.isLiked()) {
     api
       .unlikeCard(cardId)
       .then((updatedCardData) => {

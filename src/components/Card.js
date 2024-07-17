@@ -47,6 +47,10 @@ export default class Card {
     this._isLiked = !this._isLiked;
   }
 
+  isLiked() {
+    return this._isLiked;
+  }
+
   removeCard() {
     this._cardElement.remove();
     this._cardElement = null;

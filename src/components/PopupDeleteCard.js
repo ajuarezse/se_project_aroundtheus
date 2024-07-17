@@ -19,7 +19,7 @@ export default class PopupDeleteCard extends Popup {
     this._handleDeleteConfirm = handleDelete;
   }
 
-  renderLoading(isLoading, loadingText = "Saving...") {
+  renderLoading(isLoading, loadingText = "Deleting...") {
     if (isLoading) {
       this._submitButton.textContent = loadingText;
     } else {
