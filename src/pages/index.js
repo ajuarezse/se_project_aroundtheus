@@ -9,15 +9,6 @@ import "../pages/index.css";
 import Api from "../components/Api.js";
 import PopupDeleteCard from "../components/PopupDeleteCard.js";
 
-/* Functions */
-function handleEsc(evt) {
-  if (evt.key === "Escape") {
-    const modal = document.querySelector(".modal_opened");
-    modal.close();
-  }
-}
-
-/* Event Handlers */
 const userInfo = new UserInfo({
   titleSelector: ".profile__title",
   descriptionSelector: ".profile__description",
