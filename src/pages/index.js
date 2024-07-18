@@ -154,6 +154,7 @@ addCardPopup.setEventListeners();
 
 constants.addNewCardButton.addEventListener("click", () => {
   addCardPopup.open();
+  addCardFormValidator.resetValidation();
 });
 
 function createCard(cardData) {
