@@ -16,15 +16,15 @@ The Around the U.S., Project is a social web platform where users can document a
 
 ## 🛠️ Technologies Used:
 
-**JavaScript (ES6+):** Employed for scripting dynamic content and interactive elements.
+💻 **JavaScript (ES6+):** Employed for scripting dynamic content and interactive elements.
 
-**HTML & CSS:** Used for the structure and styling of the application.
+🎨 **HTML & CSS:** Used for the structure and styling of the application.
 
-**Responsive Design with Flexbox:** Ensured that the app looks great and functions well on all device sizes.
+📱 **Responsive Design with Flexbox:** Ensured that the app looks great and functions well on all device sizes.
 
-**OOP Principles:** Implemented object-oriented programming practices to enhance code organization and reusability.
+🔒 **OOP Principles:** Implemented object-oriented programming practices to enhance code organization and reusability.
 
-**Flat BEM File Structure:** Applied BEM methodology to maintain clear and manageable CSS organization.
+📁 **Flat BEM File Structure:** Applied BEM methodology to maintain clear and manageable CSS organization.
 
 ## 🚀 OOP Concepts Applied
 
@@ -44,4 +44,4 @@ The Around the U.S., Project is a social web platform where users can document a
 
 ---
 
-I plan to expand this project with additional features and functionalities. The work I’ve done so far demonstrates my skills in Javascript, API integration, responsivve design, object-oriented programming and front-end development.
+I plan to expand this project with additional features and functionalities. One idea of mine is to impliment a section where users can add short descriptions about their travels. The work I’ve done so far demonstrates my skills in Javascript, API integration, responsive design, object-oriented programming and front-end development.
