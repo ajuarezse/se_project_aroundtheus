@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="site about traveling around the US" />
+    <meta
+      name="description"
+      content="Around the US is a site about traveling, exploring, and discovering beautiful places across the United States. Find travel inspiration, tips, and guides."
+    />
     <meta name="keywords" content="us, travel" />
     <meta name="author" content="Angel Juarez" />
     <title>Around the US</title>
@@ -11,38 +14,48 @@
   </head>
   <body class="page">
     <div class="page__content">
-      <header class="header page__section">
+      <header class="header page__section" role="banner">
         <img
           src="<%=require('./images/Vector.svg')%>"
-          alt="logo"
+          alt="Around the US logo"
           class="header__logo"
         />
       </header>
-      <main class="content">
-        <section class="profile page__section">
+      <main class="content" role="main">
+        <section class="profile page__section" aria-labelledby="profile-title">
           <div class="profile__avatar-container">
             <img
               src="<%=require('./images/jacques-cousteau.jpg')%>"
-              alt="avatar"
+              alt="Portrait of Jacques Cousteau"
               class="profile__image"
             />
-            <div class="profile__avatar-button" type="button"></div>
+            <div
+              class="profile__avatar-button"
+              type="button"
+              aria-label="Edit avatar"
+            ></div>
           </div>
           <div class="profile__info">
-            <h1 class="profile__title">Jacques Cousteau</h1>
+            <h1 class="profile__title" id="profile-title">Jacques Cousteau</h1>
             <button
               type="button"
               class="profile__edit-button"
               id="profile-edit-button"
+              aria-label="Edit profile"
             ></button>
             <p class="profile__description">Explorer</p>
           </div>
-          <button type="button" class="profile__add-button"></button>
+          <button
+            type="button"
+            class="profile__add-button"
+            aria-label="Add new card"
+          ></button>
         </section>
-        <section class="cards page__section">
+        <section class="cards page__section" aria-labelledby="cards-title">
+          <h2 id="cards-title" class="visually-hidden">Photo Cards</h2>
           <ul class="cards__list"></ul>
         </section>
-        <footer class="footer page__section">
+        <footer class="footer page__section" role="contentinfo">
           <p class="footer__text">© 2024 Around The U.S.</p>
         </footer>
       </main>
@@ -149,11 +162,15 @@
     </div>
     <template id="card-template">
       <li class="card">
-        <img src="" alt="" class="card__image" />
-        <button class="card__button-trash"></button>
+        <img src="" alt="Card image" class="card__image" />
+        <button class="card__button-trash" aria-label="Delete card"></button>
         <div class="card__description">
-          <h2 class="card__title"></h2>
-          <button type="button" class="card__like-button"></button>
+          <h3 class="card__title"></h3>
+          <button
+            type="button"
+            class="card__like-button"
+            aria-label="Like card"
+          ></button>
         </div>
       </li>
     </template>
